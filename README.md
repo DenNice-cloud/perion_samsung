@@ -2,6 +2,11 @@
 
 ## Technologies used
 
+- React
+- GSAP (GreenSock Animation Platform)
+- React Router
+- TypeScript
+
 ## Setup Instructions
 To run this project locally, follow these steps:
 

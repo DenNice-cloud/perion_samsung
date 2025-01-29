@@ -12,14 +12,14 @@ export const Frames = ({
 }) => {
   const handleNext = () => {
     setIsAutoPlay(false);
-    const nextPage = currentPage >= 5 ? 1 : currentPage + 1;
+    const nextPage: number = currentPage >= 5 ? 1 : currentPage + 1;
     setCurrentPage(nextPage);
     animateTransition(nextPage);
   };
 
   const handlePrev = () => {
     setIsAutoPlay(false);
-    const prevPage = currentPage <= 1 ? 5 : currentPage - 1;
+    const prevPage: number = currentPage <= 1 ? 5 : currentPage - 1;
     setCurrentPage(prevPage);
     animateTransition(prevPage);
   };
@@ -74,7 +74,6 @@ export const Frames = ({
             onClick={handlePrev}
           >
             <img
-              className="my-icon"
               src="/Material/SVG/r.svg"
               alt="previous arrow button"
             />
@@ -87,7 +86,6 @@ export const Frames = ({
             onClick={handleNext}
           >
             <img
-              className="my-icon"
               src="/Material/SVG/l.svg"
               alt="next arrow button"
             />

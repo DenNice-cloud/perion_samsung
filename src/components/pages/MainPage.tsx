@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { Frames, FrameFirst } from "../frames";
 
 const MainPage = () => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
-  const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [isAutoPlay, setIsAutoPlay] = useState<boolean>(true);
+
   const descriptionRef = useRef(null);
   const frameRef = useRef(null);
   const autoPlayRef = useRef(null);
@@ -14,15 +15,15 @@ const MainPage = () => {
   const mainTextRef = useRef(null);
   const interactionTimeoutRef = useRef(null);
 
-  const animateTransition = (newPage) => {
+  const animateTransition = (newPage: number) => {
     if (!frameRef.current) return;
-  
+
     const tl = gsap.timeline();
     const prevFrame = frameRef.current.cloneNode(true);
     frameRef.current.parentNode.appendChild(prevFrame);
-  
+
     tl.to(prevFrame, { zIndex: 2 }, "<");
-  
+
     if (currentPage === 0) {
       tl.fromTo(
         frameRef.current,
@@ -43,7 +44,7 @@ const MainPage = () => {
         { opacity: 1, duration: 0.5 },
         "<"
       );
-  
+
       tl.fromTo(
         descriptionRef.current,
         { opacity: 0, x: "100%" },
@@ -51,7 +52,7 @@ const MainPage = () => {
         "<"
       );
     }
-  
+
     tl.add(() => {
       prevFrame.parentNode.removeChild(prevFrame);
     });
@@ -106,6 +107,7 @@ const MainPage = () => {
       if (isAutoPlay) {
         autoPlayRef.current = setInterval(() => {
           const nextPage = currentPage >= 5 ? 1 : currentPage + 1;
+
           setCurrentPage(nextPage);
           animateTransition(nextPage);
         }, 4000);
@@ -126,14 +128,13 @@ const MainPage = () => {
   useEffect(() => {
     document.addEventListener("mousemove", handleUserInteraction);
     document.addEventListener("click", handleUserInteraction);
-  
+
     return () => {
       document.removeEventListener("mousemove", handleUserInteraction);
       document.removeEventListener("click", handleUserInteraction);
     };
   }, []);
 
-  
   return (
     <div>
       <div className="frame">
