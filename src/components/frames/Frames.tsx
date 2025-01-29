@@ -1,3 +1,4 @@
+import React from "react";
 import { currentText } from "../constants/constant";
 
 export const Frames = ({

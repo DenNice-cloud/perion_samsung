@@ -1,3 +1,5 @@
+import React from "react";
+
 export const FrameFirst = ({
   handleClickPage,
   mainTextRef,
