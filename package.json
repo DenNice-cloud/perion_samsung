@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.tsx",
-  "homepage": "https://dennice-cloud.github.io/perion_samsung/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

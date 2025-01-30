@@ -45,7 +45,7 @@ html {
 
 .image-frame_1 {
   width: 100%;
-  height: auto;
+  /* height: auto; */
 }
 
 .frame-1 {
@@ -94,7 +94,7 @@ html {
 .description_page {
   position: absolute;
   height: 170px;
-  top: 220px;
+  top: 45%;
   left: 40px;
 
   display: flex;
@@ -119,9 +119,8 @@ html {
 .buttons_NextPrev {
   position: absolute;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  bottom: 0;
+  left: 40px;
+  bottom: 20%;
 }
 .buttons_NextPrev img {
   width: 10px;

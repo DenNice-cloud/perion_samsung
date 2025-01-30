@@ -4,13 +4,14 @@ interface FrameFirstProps {
   handleClickPage: () => void;
   mainTextRef: React.RefObject<HTMLDivElement | null>;
   samsungLogoRef: React.RefObject<HTMLDivElement | null>;
+  mainFrameRef: React.RefObject<HTMLImageElement | null>;
 }
-
 
 export const FrameFirst: React.FC<FrameFirstProps> = ({
   handleClickPage,
   mainTextRef,
   samsungLogoRef,
+  mainFrameRef,
 }) => {
   return (
     <div className="frame-1">
@@ -45,6 +46,7 @@ export const FrameFirst: React.FC<FrameFirstProps> = ({
 
       <div className="flex">
         <img
+          ref={mainFrameRef}
           className="image-frame_1"
           src={`${process.env.PUBLIC_URL}/material/frame_1.png`}
           alt="first frame"

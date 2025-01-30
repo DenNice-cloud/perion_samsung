@@ -5,12 +5,11 @@ interface FramesProps {
   handleClickPage: () => void;
   currentPage: number;
   setCurrentPage: (currentPage: number) => void;
-  frameRef: React.RefObject<HTMLImageElement  | null>;
+  frameRef: React.RefObject<HTMLImageElement | null>;
   descriptionRef: React.RefObject<HTMLParagraphElement | null>;
   setIsAutoPlay: (isAutoPlay: boolean) => void;
   animateTransition: (newPage: number) => void;
 }
-
 
 export const Frames: React.FC<FramesProps> = ({
   handleClickPage,
@@ -41,7 +40,9 @@ export const Frames: React.FC<FramesProps> = ({
         <img
           ref={frameRef}
           className="image-right"
-          src={`${process.env.PUBLIC_URL}/material/frame_${currentPage + 1}.png`}
+          src={`${process.env.PUBLIC_URL}/material/frame_${
+            currentPage + 1
+          }.png`}
           alt={`frame ${currentPage + 1}`}
         />
       </div>
@@ -78,30 +79,30 @@ export const Frames: React.FC<FramesProps> = ({
             Read more...
           </button>
         </p>
+      </div>
 
-        <div className="buttons_NextPrev">
-          <button
-            className="button_prev"
-            onClick={handlePrev}
-          >
-            <img
-              src={`${process.env.PUBLIC_URL}/material/SVG/r.svg`}
-              alt="previous arrow button"
-            />
-          </button>
+      <div className="buttons_NextPrev">
+        <button
+          className="button_prev"
+          onClick={handlePrev}
+        >
+          <img
+            src={`${process.env.PUBLIC_URL}/material/SVG/r.svg`}
+            alt="previous arrow button"
+          />
+        </button>
 
-          <div>{`${currentPage}/5`}</div>
+        <div>{`${currentPage}/5`}</div>
 
-          <button
-            className="button_next"
-            onClick={handleNext}
-          >
-            <img
-              src={`${process.env.PUBLIC_URL}/material/SVG/l.svg`}
-              alt="next arrow button"
-            />
-          </button>
-        </div>
+        <button
+          className="button_next"
+          onClick={handleNext}
+        >
+          <img
+            src={`${process.env.PUBLIC_URL}/material/SVG/l.svg`}
+            alt="next arrow button"
+          />
+        </button>
       </div>
 
       <button

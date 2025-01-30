@@ -9,45 +9,37 @@ const MainPage = () => {
   const [isAutoPlay, setIsAutoPlay] = useState<boolean>(true);
 
   const descriptionRef = useRef(null);
-  const frameRef = useRef<HTMLImageElement  | null>(null);
+  const frameRef = useRef<HTMLImageElement | null>(null);
+  const mainFrameRef = useRef<HTMLImageElement | null>(null);
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
   const samsungLogoRef = useRef(null);
   const mainTextRef = useRef(null);
   const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const animateTransition = (newPage: number) => {
-    if (!frameRef.current) return;
-
+  const animateTransition = () => {
     const tl = gsap.timeline();
-    const prevFrame = frameRef.current.cloneNode(true) as HTMLDivElement;
-    const parent = frameRef.current.parentNode as HTMLElement | null;
-
-    if (!parent) return;
-
-    parent.appendChild(prevFrame);
-
-    tl.to(prevFrame, { zIndex: 2 }, "<");
 
     if (currentPage === 0) {
       tl.fromTo(
-        frameRef.current,
-        { opacity: 0, zIndex: 1 },
+        mainFrameRef.current,
+        { opacity: 0, zIndex: 5 },
         { opacity: 1, duration: 1 },
         "<"
       );
-      tl.fromTo(
-        descriptionRef.current,
-        { x: "-100%", opacity: 1 },
-        { x: "0%", opacity: 1, duration: 1 },
-        "<"
-      );
     } else {
+      if (!frameRef.current) return;
+
+      const prevFrame = frameRef.current.cloneNode(false);
+
+      frameRef.current.parentNode?.appendChild(prevFrame);
       tl.fromTo(
-        frameRef.current,
-        { opacity: 0, zIndex: newPage + 5 },
-        { opacity: 1, duration: 0.5 },
+        prevFrame,
+        { opacity: 1, zIndex: 10 },
+        { opacity: 0, duration: 0.5 },
         "<"
       );
+
+      tl.to(frameRef.current, { opacity: 1, zIndex: 10 }, "<");
 
       tl.fromTo(
         descriptionRef.current,
@@ -55,11 +47,11 @@ const MainPage = () => {
         { opacity: 1, x: "0%", duration: 1, zIndex: 1 },
         "<"
       );
-    }
 
-    tl.add(() => {
-      parent.removeChild(prevFrame);
-    });
+      tl.add(() => {
+        prevFrame.parentNode?.removeChild(prevFrame);
+      });
+    }
   };
 
   const navigate = useNavigate();
@@ -70,6 +62,7 @@ const MainPage = () => {
 
   useEffect(() => {
     const tl = gsap.timeline();
+    let interval = currentPage > 0 ? 4000 : 6000;
 
     if (currentPage === 0) {
       tl.fromTo(
@@ -107,16 +100,14 @@ const MainPage = () => {
       );
     }
 
-    tl.eventCallback("onComplete", () => {
-      if (isAutoPlay) {
-        autoPlayRef.current = setInterval(() => {
-          const nextPage = currentPage >= 5 ? 1 : currentPage + 1;
+    if (isAutoPlay) {
+      autoPlayRef.current = setInterval(() => {
+        const nextPage = currentPage >= 5 ? 1 : currentPage + 1;
 
-          setCurrentPage(nextPage);
-          animateTransition(nextPage);
-        }, 4000);
-      }
-    });
+        setCurrentPage(nextPage);
+        animateTransition();
+      }, interval);
+    }
 
     return () => {
       if (autoPlayRef.current) {
@@ -135,17 +126,19 @@ const MainPage = () => {
 
     interactionTimeoutRef.current = setTimeout(() => {
       setIsAutoPlay(true);
-    }, 3000);
+    }, 4000);
   };
 
   useEffect(() => {
-    document.addEventListener("mousemove", handleUserInteraction);
-    document.addEventListener("click", handleUserInteraction);
+    if (currentPage !== 0) {
+      document.addEventListener("mousemove", handleUserInteraction);
+      document.addEventListener("click", handleUserInteraction);
 
-    return () => {
-      document.removeEventListener("mousemove", handleUserInteraction);
-      document.removeEventListener("click", handleUserInteraction);
-    };
+      return () => {
+        document.removeEventListener("mousemove", handleUserInteraction);
+        document.removeEventListener("click", handleUserInteraction);
+      };
+    }
   }, []);
 
   return (
@@ -156,6 +149,7 @@ const MainPage = () => {
             handleClickPage={handleClickPage}
             samsungLogoRef={samsungLogoRef}
             mainTextRef={mainTextRef}
+            mainFrameRef={mainFrameRef}
           />
         ) : (
           <Frames
