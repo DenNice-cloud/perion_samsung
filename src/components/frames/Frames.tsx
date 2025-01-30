@@ -41,26 +41,26 @@ export const Frames: React.FC<FramesProps> = ({
         <img
           ref={frameRef}
           className="image-right"
-          src={`/material/frame_${currentPage + 1}.png`}
+          src={`${process.env.PUBLIC_URL}/material/frame_${currentPage + 1}.png`}
           alt={`frame ${currentPage + 1}`}
         />
       </div>
 
       <img
         className="logo samsung_logo"
-        src="/material/Samsung.png"
+        src={`${process.env.PUBLIC_URL}/material/Samsung.png`}
         alt="samsung logo"
       />
 
       <img
         className="logo bespoke_jet"
-        src="/material/Bespoke_JetTM.png"
+        src={`${process.env.PUBLIC_URL}/material/Bespoke_JetTM.png`}
         alt="bespoke jet logo"
       />
 
       <img
         className="main_text main_text-frames"
-        src="/material/main_text.png"
+        src={`${process.env.PUBLIC_URL}/material/main_text.png`}
         alt="See why the Bespoke is so good"
       />
 
@@ -85,7 +85,7 @@ export const Frames: React.FC<FramesProps> = ({
             onClick={handlePrev}
           >
             <img
-              src="/material/SVG/r.svg"
+              src={`${process.env.PUBLIC_URL}/material/SVG/r.svg`}
               alt="previous arrow button"
             />
           </button>
@@ -97,7 +97,7 @@ export const Frames: React.FC<FramesProps> = ({
             onClick={handleNext}
           >
             <img
-              src="/material/SVG/l.svg"
+              src={`${process.env.PUBLIC_URL}/material/SVG/l.svg`}
               alt="next arrow button"
             />
           </button>

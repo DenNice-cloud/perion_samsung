@@ -172,7 +172,7 @@ const MainPage = () => {
 
       <img
         className="background_image"
-        src="/material/BG.png"
+        src={`${process.env.PUBLIC_URL}/material/BG.png`}
         alt="Background"
       />
     </div>
