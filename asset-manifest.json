@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/perion_samsung/static/css/main.23342f8e.css",
-    "main.js": "/perion_samsung/static/js/main.59fb7c68.js",
+    "main.css": "/perion_samsung/static/css/main.79c2ce0c.css",
+    "main.js": "/perion_samsung/static/js/main.4b6474cf.js",
     "static/media/samsungsharpsans.otf": "/perion_samsung/static/media/samsungsharpsans.f1f1b03f266759e52c8e.otf",
     "index.html": "/perion_samsung/index.html",
-    "main.23342f8e.css.map": "/perion_samsung/static/css/main.23342f8e.css.map",
-    "main.59fb7c68.js.map": "/perion_samsung/static/js/main.59fb7c68.js.map"
+    "main.79c2ce0c.css.map": "/perion_samsung/static/css/main.79c2ce0c.css.map",
+    "main.4b6474cf.js.map": "/perion_samsung/static/js/main.4b6474cf.js.map"
   },
   "entrypoints": [
-    "static/css/main.23342f8e.css",
-    "static/js/main.59fb7c68.js"
+    "static/css/main.79c2ce0c.css",
+    "static/js/main.4b6474cf.js"
   ]
 }
