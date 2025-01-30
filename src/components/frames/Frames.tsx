@@ -1,10 +1,21 @@
 import React from "react";
 import { currentText } from "../constants/constant";
 
-export const Frames = ({
+interface FramesProps {
+  handleClickPage: () => void;
+  currentPage: number;
+  setCurrentPage: (currentPage: number) => void;
+  frameRef: React.RefObject<HTMLImageElement  | null>;
+  descriptionRef: React.RefObject<HTMLParagraphElement | null>;
+  setIsAutoPlay: (isAutoPlay: boolean) => void;
+  animateTransition: (newPage: number) => void;
+}
+
+
+export const Frames: React.FC<FramesProps> = ({
   handleClickPage,
-  setCurrentPage,
   currentPage,
+  setCurrentPage,
   frameRef,
   descriptionRef,
   setIsAutoPlay,

@@ -1,6 +1,13 @@
 import React from "react";
 
-export const FrameFirst = ({
+interface FrameFirstProps {
+  handleClickPage: () => void;
+  mainTextRef: React.RefObject<HTMLDivElement | null>;
+  samsungLogoRef: React.RefObject<HTMLDivElement | null>;
+}
+
+
+export const FrameFirst: React.FC<FrameFirstProps> = ({
   handleClickPage,
   mainTextRef,
   samsungLogoRef,

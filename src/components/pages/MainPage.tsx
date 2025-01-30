@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Frames, FrameFirst } from "../frames";
+import { Frames, FrameFirst } from "../frames/index";
 
 const MainPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
@@ -9,18 +9,22 @@ const MainPage = () => {
   const [isAutoPlay, setIsAutoPlay] = useState<boolean>(true);
 
   const descriptionRef = useRef(null);
-  const frameRef = useRef(null);
-  const autoPlayRef = useRef(null);
+  const frameRef = useRef<HTMLImageElement  | null>(null);
+  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
   const samsungLogoRef = useRef(null);
   const mainTextRef = useRef(null);
-  const interactionTimeoutRef = useRef(null);
+  const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const animateTransition = (newPage: number) => {
     if (!frameRef.current) return;
 
     const tl = gsap.timeline();
-    const prevFrame = frameRef.current.cloneNode(true);
-    frameRef.current.parentNode.appendChild(prevFrame);
+    const prevFrame = frameRef.current.cloneNode(true) as HTMLDivElement;
+    const parent = frameRef.current.parentNode as HTMLElement | null;
+
+    if (!parent) return;
+
+    parent.appendChild(prevFrame);
 
     tl.to(prevFrame, { zIndex: 2 }, "<");
 
@@ -54,7 +58,7 @@ const MainPage = () => {
     }
 
     tl.add(() => {
-      prevFrame.parentNode.removeChild(prevFrame);
+      parent.removeChild(prevFrame);
     });
   };
 
@@ -114,12 +118,21 @@ const MainPage = () => {
       }
     });
 
-    return () => clearInterval(autoPlayRef.current);
+    return () => {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+        autoPlayRef.current = null;
+      }
+    };
   }, [isAutoPlay, currentPage]);
 
   const handleUserInteraction = () => {
     setIsAutoPlay(false);
-    clearTimeout(interactionTimeoutRef.current);
+
+    if (interactionTimeoutRef.current) {
+      clearTimeout(interactionTimeoutRef.current);
+    }
+
     interactionTimeoutRef.current = setTimeout(() => {
       setIsAutoPlay(true);
     }, 3000);
