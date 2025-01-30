@@ -172,7 +172,7 @@ const MainPage = () => {
 
       <img
         className="background_image"
-        src="/Material/BG.png"
+        src="/material/BG.png"
         alt="Background"
       />
     </div>

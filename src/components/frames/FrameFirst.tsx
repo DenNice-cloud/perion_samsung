@@ -17,21 +17,21 @@ export const FrameFirst: React.FC<FrameFirstProps> = ({
       <div ref={samsungLogoRef}>
         <img
           className="logo samsung_logo"
-          src="/Material/Samsung.png"
+          src="/material/Samsung.png"
           alt="samsung logo"
         />
       </div>
 
       <img
         className="logo bespoke_jet"
-        src="/Material/Bespoke_JetTM.png"
+        src="/material/Bespoke_JetTM.png"
         alt="bespoke logo"
       />
 
       <div ref={mainTextRef}>
         <img
           className="main_text"
-          src="/Material/main_text.png"
+          src="/material/main_text.png"
           alt="See why the Bespoke is so good"
         />
       </div>
@@ -46,7 +46,7 @@ export const FrameFirst: React.FC<FrameFirstProps> = ({
       <div className="flex">
         <img
           className="image-frame_1"
-          src="/Material/frame_1.png"
+          src="/material/frame_1.png"
           alt="first frame"
         />
       </div>
